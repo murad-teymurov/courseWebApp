@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<a href="/student/new">Add Student</a>
+
+<br>
+
+<a href="http://localhost:8080/student/list"> show all</a>
+
+<br>
+
+<div>
+    <form action="/student/update" method="get">
+        <label>Update Student By ID:</label>
+        <input type="text" name="id"/>
+        <input type="submit" value="update">
+    </form>
+</div>
+<br>
+
+<div>
+    <form action="/student/delete" method="post">
+        <label>Delete Student By ID:</label>
+        <input type="text" name="id"/>
+        <input type="submit" value="delete">
+    </form>
+</div>
+<br>
+<div>
+    <form action="/student/name" method="get">
+        <label> Student By Name:</label>
+        <input type="text" name="name"/>
+        <input type="submit" value="Search">
+    </form>
+</div>
+
+</body>
+</html>
