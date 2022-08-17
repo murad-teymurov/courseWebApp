@@ -7,9 +7,11 @@ import com.company.SimpleWebApp.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +50,11 @@ public class StudentController {
     }
 
     @PostMapping("/save")
-    public String addStudent(Student student, Model model){
+    public String addStudent(@Valid Student student, BindingResult br, Model model){
+
+        if(br.hasErrors()){
+            return "details";
+        }
         studentRepository.save(student);
         List<Student> students = studentRepository.findAll();
         model.addAttribute("students", students);

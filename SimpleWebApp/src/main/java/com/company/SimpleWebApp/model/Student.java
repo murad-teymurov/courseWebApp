@@ -1,6 +1,10 @@
 package com.company.SimpleWebApp.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -9,12 +13,18 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Student_ID")
+    @Positive
+    @NotNull
     private Integer id;
 
     @Column(name = "name")
+    @NotBlank
+    @Size(min = 3,max = 30)
     private String name;
 
     @Column(name = "surname")
+    @NotBlank
+    @Size(min = 5,max = 30)
     private String surname;
 
     @ManyToMany

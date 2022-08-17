@@ -3,20 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New Student</title>
+
+
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
 <div align="center">
     <h1>User Registration</h1>
     <form action="#" th:action="@{/student/save}" method="post" th:object="${student}">
+
+       <div  th:if="${#fields.hasErrors('*')}">
+           <p class="error" > Pls correct errors below</p>
+       </div>
+
         <label>ID:</label>
         <input type="text" th:field="*{id}" /><br/>
 
+        <span class="error" th:if=" ${#fields.errors('id')}">
+            <ul>
+                <li th:each="err : ${#fields.errors('id')}" th:text="${err}"/>
+            </ul>
+        </span>
+
         <label>Name:</label>
         <input type="text" th:field="*{name}" /><br/>
+        <span class="error" th:if=" ${#fields.errors('name')}">
+        <ul>
+            <li th:each="err : ${#fields.errors('name')}" th:text="${err}"/>
+        </ul>
+        </span>
 
         <label>Surname:</label>
         <input type="text" th:field="*{surname}" /><br/>
+        <span class="error" th:if=" ${#fields.errors('surname')}">
+        <ul>
+            <li th:each="err : ${#fields.errors('surname')}" th:text="${err}" class="error" />
+        </ul>
+        </span>
 
         <p th:each="course :${allcourses}">
 
