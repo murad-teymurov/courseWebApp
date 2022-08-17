@@ -53,6 +53,8 @@ public class StudentController {
     public String addStudent(@Valid Student student, BindingResult br, Model model){
 
         if(br.hasErrors()){
+            List<Course> courseList = courseRepository.findAll();
+            model.addAttribute("allcourses", courseList);
             return "details";
         }
         studentRepository.save(student);
@@ -67,6 +69,7 @@ public class StudentController {
        Optional<Student> optionalStudent = studentRepository.findById(id);
 
        if(optionalStudent.isPresent()){
+           @Valid
            Student student = optionalStudent.get();
            model.addAttribute("student", student);
        }
